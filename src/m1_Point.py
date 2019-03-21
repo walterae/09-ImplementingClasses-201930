@@ -46,6 +46,7 @@ class Point(object):
         self.x2 = x
         self.y2 = y
         self.move = 0
+        self.distance = 0
 
 
 
@@ -56,14 +57,20 @@ class Point(object):
         return Point(self.x,self.y)
 
     def move_to(self, x, y):
+        self.x3 = self.x
+        self.y3 = self.y
         self.x = x
         self.y = y
         self.move +=1
+        self.distance = self.distance + self.get_distance_from(Point(self.x3,self.y3))
 
     def move_by(self,dx,dy):
+        self.x3 = self.x
+        self.y3 = self.y
         self.x = self.x + dx
         self.y = self.y + dy
         self.move +=1
+        self.distance = self.distance + self.get_distance_from(Point(self.x3,self.y3))
 
     def get_number_of_moves_made(self):
         return self.move
@@ -79,7 +86,8 @@ class Point(object):
         return dist
 
     def get_distance_traveled(self):
-        return
+
+        return self.distance
 
     def closer_to(self, point1, point2):
         import math
